@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="styles/pages/amazon.css" />
 </head>
 
-<body>
+<body class="light-mode">
   <div class="amazon-header">
     <div class="amazon-header-left-section">
       <a href="amazon.html" class="header-link">
@@ -35,6 +35,10 @@
       <button class="search-button">
         <img class="search-icon" src="images/icons/search-icon.png" />
       </button>
+    </div>
+
+    <div class="ld-btn">
+      <input type="checkbox" class="theme-checkbox" id="theme-toggle">
     </div>
 
     <div class="amazon-header-right-section">
@@ -56,6 +60,7 @@
   </div>
 
   <script type="Module" src="scripts/amazon.js"></script>
+  <script src="scripts/light-dark.js"></script>
 </body>
 
 </html>
