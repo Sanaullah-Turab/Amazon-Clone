@@ -46,7 +46,7 @@ body {
 }
 
 .container button {
-  background-color: #981c9c;
+  background-color: #FF9900;
   color: #fff;
   font-size: 12px;
   padding: 10px 45px;
@@ -60,7 +60,7 @@ body {
 }
 
 .container button.hidden {
-  color: #981c9c;
+  color: #FF9900;
   background-color: #fff;
   border-color: #fff;
 }
@@ -164,7 +164,7 @@ body {
 }
 
 .toggle {
-  background-color: #981c9c;
+  background-color: #FF9900;
   height: 100%;
   color: #fff;
   position: relative;
