@@ -1,72 +1,70 @@
-const express = require('express');
-const mysql = require('mysql2');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
+const express = require("express");
+const mysql = require("mysql2");
+const cors = require("cors");
+const path = require("path");
 
-// Create Express app
 const app = express();
-const PORT = 3000;
-
-// Middleware
-app.use(bodyParser.json());
 app.use(cors());
-app.use('/images', express.static(path.join(__dirname, 'images'))); // Serve static images
+app.use(express.json());
+
+// Serve static front-end files
+app.use(express.static(path.join(__dirname, "public")));
 
 // MySQL Database connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '5IctMySQL981@3', // Replace with your MySQL password
-    database: 'webStore'
+    host: "localhost",
+    user: "root", // Replace with your MySQL username
+    password: "5IctMySQL981@3", // Replace with your MySQL password
+    database: "webstore",
 });
 
 db.connect(err => {
     if (err) throw err;
-    console.log('Connected to MySQL database');
+    console.log("Connected to MySQL!");
 });
 
-// API to fetch all products
-app.get('/api/products', (req, res) => {
-    const sql = 'SELECT * FROM products';
-    db.query(sql, (err, results) => {
+// Endpoint to fetch products
+app.get("/products", (req, res) => {
+    db.query("SELECT * FROM products", (err, results) => {
         if (err) throw err;
         res.json(results);
     });
 });
 
-// API to add a product
-app.post('/api/products', (req, res) => {
-    const { name, description, price, image_path } = req.body;
-    const sql = 'INSERT INTO products (name, description, price, image_path) VALUES (?, ?, ?, ?)';
-    db.query(sql, [name, description, price, image_path || null], (err, result) => {
+// Endpoint to add a new product
+app.post("/products", (req, res) => {
+    const { name, description, price } = req.body;
+    const query = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
+    db.query(query, [name, description, price], (err, result) => {
         if (err) throw err;
-        res.json({ id: result.insertId, name, description, price, image_path });
+        res.json({ id: result.insertId, name, description, price });
     });
 });
 
-// API to update a product
-app.put('/api/products', (req, res) => {
-    const { id, name, description, price, image_path } = req.body;
-    const sql = 'UPDATE products SET name = ?, description = ?, price = ?, image_path = ? WHERE id = ?';
-    db.query(sql, [name, description, price, image_path || null, id], (err, result) => {
-        if (err) throw err;
-        res.json({ message: 'Product updated successfully' });
-    });
-});
+// Route to delete a specific product
+app.post("/delete-product", (req, res) => {
+    const productName = req.body.product_name;
+    console.log(req.body); 
+    if (!productName) {
+        return res.status(400).send("Product name is required.");
+    }
 
-// API to delete a product
-app.delete('/api/products', (req, res) => {
-    const { id } = req.body;
-    const sql = 'DELETE FROM products WHERE id = ?';
-    db.query(sql, [id], (err, result) => {
-        if (err) throw err;
-        res.json({ message: 'Product deleted successfully' });
+    const query = "DELETE FROM products WHERE name = ?";
+    db.query(query, [productName], (err, results) => {
+        if (err) {
+            console.error("Error deleting product data:", err);
+            return res.status(500).send("Error deleting data.");
+        }
+
+        if (results.affectedRows === 0) {
+            return res.status(404).send("No product found with that name.");
+        }
+
+        res.send(`Product "${productName}" deleted successfully.`);
     });
 });
 
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
 });
-
