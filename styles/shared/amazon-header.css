@@ -111,6 +111,7 @@
 .returns-text {
   display: block;
   font-size: 13px;
+  font-weight: 700;
 }
 
 .orders-text {
