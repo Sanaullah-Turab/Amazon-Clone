@@ -4,31 +4,16 @@
 
 .products-grid {
   display: grid;
-
-  /* - In CSS Grid, 1fr means a column will take up the
-       remaining space in the grid.
-     - If we write 1fr 1fr ... 1fr; 8 times, this will
-       divide the grid into 8 columns, each taking up an
-       equal amount of the space.
-     - repeat(8, 1fr); is a shortcut for repeating "1fr"
-       8 times (instead of typing out "1fr" 8 times).
-       repeat(...) is a special property that works with
-       display: grid; */
   grid-template-columns: repeat(8, 1fr);
+  gap: 20px;
 }
 
-/* @media is used to create responsive design (making the
-   website look good on any screen size). This @media
-   means when the screen width is 2000px or less, we
-   will divide the grid into 7 columns instead of 8. */
 @media (max-width: 2000px) {
   .products-grid {
     grid-template-columns: repeat(7, 1fr);
   }
 }
 
-/* This @media means when the screen width is 1600px or
-   less, we will divide the grid into 6 columns. */
 @media (max-width: 1600px) {
   .products-grid {
     grid-template-columns: repeat(6, 1fr);
@@ -65,18 +50,6 @@
   }
 }
 
-/* .product-container {
-  padding-top: 40px;
-  padding-bottom: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
-
-  border-right: 1px solid rgb(231, 231, 231);
-  border-bottom: 1px solid rgb(231, 231, 231);
-
-  display: flex;
-  flex-direction: column;
-} */
 .product-container {
   padding: 20px;
   border-radius: 10px;
@@ -84,6 +57,10 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px; /* Ensures uniform height across all cards */
 }
 
 .product-container:hover {
@@ -91,25 +68,11 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* .product-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 180px;
-  margin-bottom: 20px;
-}
-
-.product-image {
-  max-width: 100%;
-  max-height: 100%;
-} */
-
 .product-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;
+  height: 180px; /* Fixed height for images */
   margin-bottom: 15px;
   overflow: hidden;
   position: relative;
@@ -123,24 +86,24 @@
 }
 
 .product-image-container:hover .product-image {
-  transform: scale(1.1); /* Zoom effect */
+  transform: scale(1.1);
 }
-
-/* .product-name {
-  height: 40px;
-  margin-bottom: 5px;
-} */
 
 .product-name {
   font-size: 18px;
   font-weight: 700;
   color: #333;
   margin-bottom: 8px;
+  height: 40px; /* Ensures uniform height for product names */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product-rating-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
 }
 
@@ -154,11 +117,6 @@
   cursor: pointer;
   margin-top: 3px;
 }
-
-/* .product-price {
-  font-weight: 700;
-  margin-bottom: 10px;
-} */
 
 .product-price {
   font-size: 20px;
@@ -178,9 +136,9 @@
 .added-to-cart {
   color: rgb(6, 125, 98);
   font-size: 16px;
-
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 8px;
   opacity: 0;
 }
@@ -193,12 +151,16 @@
 .add-to-cart-button {
   width: 100%;
   padding: 10px;
-  border-radius: 50px;
-  background: #0b1b32;
+  border-radius: 5px;
+  background: #26415e;
   color: #fff;
   border: none;
-  border-radius: 5px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-to-cart-button:hover {
+  background: #0b1b32;
 }
