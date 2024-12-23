@@ -120,7 +120,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 400px; /* Ensures uniform height across all cards */
+  height: 400px;
 }
 
 .product-container:hover {
@@ -132,7 +132,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 180px; /* Fixed height for images */
+  height: 180px;
   margin-bottom: 15px;
   overflow: hidden;
   position: relative;
@@ -154,7 +154,7 @@ body {
   font-weight: 700;
   color: #333;
   margin-bottom: 8px;
-  height: 40px; /* Ensures uniform height for product names */
+  height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
