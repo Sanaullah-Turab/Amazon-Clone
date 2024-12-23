@@ -86,3 +86,9 @@ function renderProducts() {
   document.querySelector(".js-cart-quantity").textContent =
     cart.cartItems.length;
 }
+document
+  .getElementById("adminButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    window.location.href = "admin.html"; // Redirect to amazon.html
+  });
