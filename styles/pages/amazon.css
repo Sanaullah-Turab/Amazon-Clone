@@ -194,4 +194,11 @@
   width: 100%;
   padding: 10px;
   border-radius: 50px;
+  background: #0b1b32;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
