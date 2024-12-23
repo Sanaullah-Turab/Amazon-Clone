@@ -126,9 +126,16 @@
   transform: scale(1.1); /* Zoom effect */
 }
 
-.product-name {
+/* .product-name {
   height: 40px;
   margin-bottom: 5px;
+} */
+
+.product-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
 }
 
 .product-rating-container {
@@ -148,8 +155,15 @@
   margin-top: 3px;
 }
 
-.product-price {
+/* .product-price {
   font-weight: 700;
+  margin-bottom: 10px;
+} */
+
+.product-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
   margin-bottom: 10px;
 }
 
@@ -168,10 +182,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-
-  /* At first, the "Added to cart" message will
-     be invisible. Use JavaScript to change the
-     opacity and make it visible. */
   opacity: 0;
 }
 
@@ -182,6 +192,6 @@
 
 .add-to-cart-button {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border-radius: 50px;
 }
