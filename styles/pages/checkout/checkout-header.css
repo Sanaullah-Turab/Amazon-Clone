@@ -2,7 +2,7 @@
   height: 60px;
   padding-left: 30px;
   padding-right: 30px;
-  background-color: white;
+  background-color: #0b1b32;
 
   display: flex;
   justify-content: center;
@@ -35,10 +35,6 @@
   display: none;
 }
 
-/* @media is used to create responsive design (making the
-   website look good on any screen size). This @media
-   means when the screen width is 575px or less, different
-   styles (inside the {...}) will be applied. */
 @media (max-width: 575px) {
   .checkout-header-left-section {
     width: auto;
