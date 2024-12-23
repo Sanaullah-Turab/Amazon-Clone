@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click Bazaar</title>
 
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Load a font called Roboto from Google Fonts. -->
+    <!-- Load fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,29 +13,37 @@
       rel="stylesheet"
     />
 
-    <!-- Here are the CSS files for this page. -->
+    <!-- CSS Files -->
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/amazon-header.css" />
     <link rel="stylesheet" href="styles/pages/amazon.css" />
   </head>
-
   <body class="light-mode">
+    <!-- Header Section -->
     <div class="amazon-header">
       <div class="amazon-header-left-section">
         <a href="amazon.html" class="header-link">
-          <img class="amazon-logo" src="images/amazon-logo-white.png" />
+          <img
+            class="amazon-logo"
+            src="images/amazon-logo-white.png"
+            alt="Amazon Logo"
+          />
           <img
             class="amazon-mobile-logo"
             src="images/amazon-mobile-logo-white.png"
+            alt="Amazon Mobile Logo"
           />
         </a>
       </div>
 
       <div class="amazon-header-middle-section">
         <input class="search-bar" type="text" placeholder="Search" />
-
         <button class="search-button">
-          <img class="search-icon" src="images/icons/search-icon.png" />
+          <img
+            class="search-icon"
+            src="images/icons/search-icon.png"
+            alt="Search Icon"
+          />
         </button>
       </div>
 
@@ -53,21 +58,50 @@
         </a>
 
         <a class="cart-link header-link" href="checkout.html">
-          <img class="cart-icon" src="images/icons/cart-icon.png" />
+          <img
+            class="cart-icon"
+            src="images/icons/cart-icon.png"
+            alt="Cart Icon"
+          />
           <div class="cart-quantity js-cart-quantity">0</div>
           <div class="cart-text">Cart</div>
         </a>
       </div>
     </div>
 
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="hero-content">
+        <h1>Welcome to Click Bazaar</h1>
+        <p>Discover great deals and shop for your favorite products today!</p>
+        <button class="hero-button">Start Shopping</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
     <div class="main">
-      <div class="products-grid js-products-grid"></div>
+      <div class="products-grid js-products-grid">
+        <!-- Example Product Card -->
+        <div class="product-container">
+          <div class="product-image-container">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Product 1"
+              class="product-image"
+            />
+          </div>
+          <h2 class="product-name">Product 1</h2>
+          <div class="product-rating-container">
+            <div class="product-rating-stars">⭐⭐⭐⭐⭐</div>
+            <span class="product-rating-count">(120)</span>
+          </div>
+          <div class="product-price">$25.99</div>
+          <button class="add-to-cart-button">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
-    <script type="Module" src="scripts/amazon.js"></script>
-    <script src="scripts/light-dark.js"></script>
     <footer>
-      <!-- <a href = "database/public/index.html">Database</a> -->
       <a
         href="http://localhost:3000/"
         class="footer-link"
@@ -78,8 +112,13 @@
           padding: 10px;
           display: inline-block;
         "
-        >Database</a
       >
+        Database
+      </a>
     </footer>
+
+    <!-- JavaScript -->
+    <script type="Module" src="scripts/amazon.js"></script>
+    <script src="scripts/light-dark.js"></script>
   </body>
 </html>
