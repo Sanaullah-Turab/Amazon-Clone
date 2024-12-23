@@ -1,3 +1,7 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .checkout-header {
   height: 60px;
   padding-left: 30px;
@@ -97,4 +101,13 @@
   .checkout-header-right-section {
     width: auto;
   }
+}
+.page-title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.page-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
