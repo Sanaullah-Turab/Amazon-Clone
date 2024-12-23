@@ -42,9 +42,7 @@
         </button>
       </div>
 
-      <div class="ld-btn">
-        <!-- <input type="checkbox" class="theme-checkbox" id="theme-toggle" /> -->
-      </div>
+      <div class="ld-btn"></div>
 
       <div class="amazon-header-right-section">
         <a class="orders-link header-link" href="orders.html">
@@ -63,13 +61,25 @@
         </a>
       </div>
     </div>
-    <form id="add-product-form" class="add-product-containder">
-      <input type="text" id="name" placeholder="Product Name" required />
-      <textarea id="description" placeholder="Description"></textarea>
-      <input type="number" id="price" placeholder="Price" required />
-      <input type="text" id="image_path" placeholder="Image URL" />
-      <button type="submit">Add Product</button>
-    </form>
+
+    <div class="form-wrapper">
+      <div class="form-container">
+        <div class="form-left">
+          <h2>Add New Product</h2>
+          <form id="add-product-form">
+            <input type="text" id="name" placeholder="Product Name" required />
+            <textarea id="description" placeholder="Description"></textarea>
+            <input type="number" id="price" placeholder="Price" required />
+            <input type="text" id="image_path" placeholder="Image URL" />
+            <button type="submit" class="submit-button">Add Product</button>
+          </form>
+        </div>
+        <div class="form-right">
+          <h2>Welcome, Admin!</h2>
+          <p>Manage your store efficiently and add new products with ease.</p>
+        </div>
+      </div>
+    </div>
 
     <script>
       document
@@ -92,7 +102,6 @@
             if (response.ok) {
               alert("Product added successfully!");
               document.getElementById("add-product-form").reset();
-              fetchProducts(); // Refresh the product list
             } else {
               alert("Error adding product");
             }
