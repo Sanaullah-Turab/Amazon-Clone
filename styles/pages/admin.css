@@ -1,0 +1,52 @@
+/* admin.css */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.add-product-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-container input,
+.add-product-container textarea,
+.add-product-container button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-product-container input:focus,
+.add-product-container textarea:focus {
+  outline: none;
+  border-color: #0073e6;
+  box-shadow: 0 0 5px rgba(0, 115, 230, 0.5);
+}
+
+.add-product-container textarea {
+  resize: none;
+  height: 100px;
+}
+
+.add-product-container button {
+  background-color: #0073e6;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-product-container button:hover {
+  background-color: #005bb5;
+}
