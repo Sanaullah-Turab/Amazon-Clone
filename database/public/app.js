@@ -5,17 +5,32 @@ const fetchProducts = async () => {
     const response = await fetch(API_URL);
     const products = await response.json();
     const productList = document.getElementById("product-list");
-    productList.innerHTML = products
-        .map(
-            product => `
-            <div>
-                <strong>${product.name}</strong>
-                <p>${product.description}</p>
-                <span>$${product.price}</span>
-            </div>
-        `
-        )
-        .join("");
+    productList.innerHTML = `
+        <table style="border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">ID</th>
+                    <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">Name</th>
+                    <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">Description</th>
+                    <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${products
+                    .map(
+                        (product) => `
+                        <tr>
+                            <td style="border: 1px solid black; padding: 8px;">${product.id}</td>
+                            <td style="border: 1px solid black; padding: 8px;">${product.name}</td>
+                            <td style="border: 1px solid black; padding: 8px;">${product.description}</td>
+                            <td style="border: 1px solid black; padding: 8px;">$${product.price}</td>
+                        </tr>
+                    `
+                    )
+                    .join("")}
+            </tbody>
+        </table>
+    `;
 };
 
 // Handle form submission
