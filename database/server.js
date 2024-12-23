@@ -34,7 +34,6 @@ app.get("/products", (req, res) => {
     });
 });
 
-// Endpoint to delete all products
 
 // Endpoint to add a new product
 app.post("/products", (req, res) => {
@@ -46,6 +45,24 @@ app.post("/products", (req, res) => {
             return res.status(500).send("Error adding product.");
         }
         res.json({ id: result.insertId, name, description, price });
+    });
+});
+
+// Endpoint to update a specific product by id
+// filepath: database/server.js
+app.put("/update-product/:id", (req, res) => {
+    const productId = req.params.id;
+    const { name, description, price } = req.body;
+    const query = "UPDATE products SET name = ?, description = ?, price = ? WHERE id = ?";
+    db.query(query, [name, description, price, productId], (err, results) => {
+        if (err) {
+            console.error("Error updating product:", err);
+            return res.status(500).send("Error updating product.");
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).send(`No product found with id "${productId}".`);
+        }
+        res.send(`Product with id "${productId}" updated successfully.`);
     });
 });
 

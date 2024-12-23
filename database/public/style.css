@@ -37,7 +37,7 @@ body {
     background-color: #74c574;
     color: aliceblue;
 }
-#name, #price, #description,#update-name, #update-price, #update-description, #delete-name {
+#name, #price, #description,#update_product_id, #update_product_name, #update_product_price, #update_product_description, #delete-name {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
