@@ -7,30 +7,33 @@ const fetchProducts = async () => {
         const products = await response.json();
         const productList = document.getElementById("product-list");
         productList.innerHTML = `
-            <table style="border-collapse: collapse; width: 100%;">
+            <div style="text-align: center; margin-left: 550px; ">
+            <h1 style >Product List</h1>
+            <table style="border-collapse: collapse; width: 80%; margin: 0 auto;">
                 <thead>
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">ID</th>
-                        <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">Name</th>
-                        <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">Description</th>
-                        <th style="border: 1px solid black; padding: 8px; background-color: gray; color: white;">Price</th>
-                    </tr>
+                <tr>
+                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">ID</th>
+                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">Name</th>
+                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">Description</th>
+                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">Price</th>
+                </tr>
                 </thead>
                 <tbody>
-                    ${products
-                        .map(
-                            (product) => `
-                            <tr>
-                                <td style="border: 1px solid black; padding: 8px;">${product.id}</td>
-                                <td style="border: 1px solid black; padding: 8px;">${product.name}</td>
-                                <td style="border: 1px solid black; padding: 8px;">${product.description}</td>
-                                <td style="border: 1px solid black; padding: 8px;">$${product.price}</td>
-                            </tr>
-                        `
-                        )
-                        .join("")}
+                ${products
+                    .map(
+                    (product) => `
+                    <tr>
+                        <td style="border: 1px solid black; padding: 12px; text-align: center;">${product.id}</td>
+                        <td style="border: 1px solid black; padding: 12px; text-align: center;">${product.name}</td>
+                        <td style="border: 1px solid black; padding: 12px; text-align: center;">${product.description}</td>
+                        <td style="border: 1px solid black; padding: 12px; text-align: center;">$${product.price}</td>
+                    </tr>
+                    `
+                    )
+                    .join("")}
                 </tbody>
             </table>
+            </div>
         `;
     } catch (error) {
         console.error("Error fetching products:", error);
