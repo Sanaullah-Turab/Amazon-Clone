@@ -7,32 +7,34 @@ const fetchProducts = async () => {
         const products = await response.json();
         const productList = document.getElementById("product-list");
         productList.innerHTML = `
-            <div style="text-align: center; margin-left: 550px; ">
-            <h1 style >Product List</h1>
-            <table style="border-collapse: collapse; width: 80%; margin: 0 auto;">
-                <thead>
-                <tr>
-                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">ID</th>
-                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">Name</th>
-                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">Description</th>
-                    <th style="border: 1px solid black; padding: 12px; background-color: gray; color: white;">Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                ${products
-                    .map(
-                    (product) => `
-                    <tr>
-                        <td style="border: 1px solid black; padding: 12px; text-align: center;">${product.id}</td>
-                        <td style="border: 1px solid black; padding: 12px; text-align: center;">${product.name}</td>
-                        <td style="border: 1px solid black; padding: 12px; text-align: center;">${product.description}</td>
-                        <td style="border: 1px solid black; padding: 12px; text-align: center;">$${product.price}</td>
-                    </tr>
-                    `
-                    )
-                    .join("")}
-                </tbody>
-            </table>
+            <div style="display: flex; justify-content: center; align-items: center; border-radius: 8px; background-color:; #f9f9f9;">
+                <div style="width: 80%; max-width: 800px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; overflow: hidden;">
+                    <h1 style="text-align: center; font-size: 2.5em; margin: 20px 0; color: #333;">Product List</h1>
+                    <table style="border-collapse: collapse; width: 100%; margin: 0;">
+                        <thead style="border-radius: 8px; overflow: hidden;>
+                            <tr style="border-radius: 8px; overflow: hidden;">
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: center; background-color: #26415e; color: white; font-size: 1.1em;">ID</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: center; background-color: #26415e; color: white; font-size: 1.1em;">Name</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: center; background-color: #26415e; color: white; font-size: 1.1em;">Description</th>
+                                <th style="border: 1px solid #ddd; padding: 12px; text-align: center; background-color: #26415e; color: white; font-size: 1.1em;">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${products
+                                .map(
+                                    (product) => `
+                                        <tr style="transition: background-color 0.2s ease-in-out;">
+                                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">${product.id}</td>
+                                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">${product.name}</td>
+                                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">${product.description}</td>
+                                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">$${product.price}</td>
+                                        </tr>
+                                    `
+                                )
+                                .join("")}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         `;
     } catch (error) {
