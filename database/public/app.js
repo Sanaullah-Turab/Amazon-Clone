@@ -6,12 +6,6 @@ const fetchProducts = async () => {
         const response = await fetch(API_URL);
         const products = await response.json();
         const productList = document.getElementById("product-list");
-
-        if (products.length === 0) {
-            productList.innerHTML = "<p>No products found. Add some to get started!</p>";
-            return;
-        }
-
         productList.innerHTML = `
             <table style="border-collapse: collapse; width: 100%;">
                 <thead>
@@ -23,13 +17,18 @@ const fetchProducts = async () => {
                     </tr>
                 </thead>
                 <tbody>
-                    ${products.map(product => `
-                        <tr>
-                            <td style="border: 1px solid black; padding: 8px;">${product.id}</td>
-                            <td style="border: 1px solid black; padding: 8px;">${product.name}</td>
-                            <td style="border: 1px solid black; padding: 8px;">${product.description}</td>
-                            <td style="border: 1px solid black; padding: 8px;">$${product.price}</td>
-                        </tr>`).join("")}
+                    ${products
+                        .map(
+                            (product) => `
+                            <tr>
+                                <td style="border: 1px solid black; padding: 8px;">${product.id}</td>
+                                <td style="border: 1px solid black; padding: 8px;">${product.name}</td>
+                                <td style="border: 1px solid black; padding: 8px;">${product.description}</td>
+                                <td style="border: 1px solid black; padding: 8px;">$${product.price}</td>
+                            </tr>
+                        `
+                        )
+                        .join("")}
                 </tbody>
             </table>
         `;
@@ -38,17 +37,17 @@ const fetchProducts = async () => {
     }
 };
 
-// Handle form submissions
-const handleAddProduct = async event => {
+// Handle form submission
+const resetForm = (formId) => {
+    document.getElementById(formId).reset();
+};
+
+// Add Product
+document.getElementById("product-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const name = document.getElementById("name").value;
     const description = document.getElementById("description").value;
     const price = document.getElementById("price").value;
-
-    if (!name || !description || price <= 0) {
-        alert("Please fill all fields correctly.");
-        return;
-    }
 
     try {
         const response = await fetch(API_URL, {
@@ -58,25 +57,25 @@ const handleAddProduct = async event => {
         });
 
         if (response.ok) {
-            document.getElementById("product-form").reset();
+            resetForm("product-form");
             fetchProducts();
+        } else {
+            alert("Failed to add product.");
         }
     } catch (error) {
         console.error("Error adding product:", error);
+        alert("An error occurred while adding the product.");
     }
-};
+    location.reload();
+});
 
-const handleUpdateProduct = async event => {
+// Update Product
+document.getElementById("product-update-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const id = document.getElementById("update_product_id").value;
     const name = document.getElementById("update_product_name").value;
     const description = document.getElementById("update_product_description").value;
     const price = document.getElementById("update_product_price").value;
-
-    if (!id || !name || !description || price <= 0) {
-        alert("Please fill all fields correctly.");
-        return;
-    }
 
     try {
         const response = await fetch(`${API_URL}/${id}`, {
@@ -86,39 +85,40 @@ const handleUpdateProduct = async event => {
         });
 
         if (response.ok) {
-            // alert("Product updated successfully!");
+            resetForm("product-update-form");
             fetchProducts();
+        } else {
+            alert("Failed to update product. Please check the ID.");
         }
     } catch (error) {
         console.error("Error updating product:", error);
+        alert("An error occurred while updating the product.");
     }
-};
+    location.reload();
+});
 
-const handleDeleteProduct = async event => {
+// Delete Product
+document.getElementById("product-delete-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const id = document.getElementById("product_id").value;
 
-    if (!id) {
-        alert("Please provide a valid product ID.");
-        return;
-    }
-
     try {
-        const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+        });
 
         if (response.ok) {
-            // alert("Product deleted successfully!");
+            resetForm("product-delete-form");
             fetchProducts();
+        } else {
+            alert("Failed to delete product. Please check the ID.");
         }
     } catch (error) {
         console.error("Error deleting product:", error);
+        alert("An error occurred while deleting the product.");
     }
-};
-
-// Event listeners
-document.getElementById("product-form").addEventListener("submit", handleAddProduct);
-document.getElementById("product-update-form").addEventListener("submit", handleUpdateProduct);
-document.getElementById("product-delete-form").addEventListener("submit", handleDeleteProduct);
+    location.reload();
+});
 
 // Load products on page load
 fetchProducts();

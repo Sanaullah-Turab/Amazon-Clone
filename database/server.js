@@ -6,20 +6,24 @@ const path = require("path");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static front-end files
 app.use(express.static(path.join(__dirname, "public")));
 
+// MySQL Database connection
 const db = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "5IctMySQL981@3",
+    user: "root", // Replace with your MySQL username
+    password: "5IctMySQL981@3", // Replace with your MySQL password
     database: "webstore",
 });
 
-db.connect(err => {
+db.connect((err) => {
     if (err) throw err;
     console.log("Connected to MySQL!");
 });
 
+// Endpoint to fetch products
 app.get("/products", (req, res) => {
     db.query("SELECT * FROM products", (err, results) => {
         if (err) {
@@ -30,6 +34,7 @@ app.get("/products", (req, res) => {
     });
 });
 
+// Endpoint to add a new product
 app.post("/products", (req, res) => {
     const { name, description, price } = req.body;
     const query = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
@@ -42,6 +47,7 @@ app.post("/products", (req, res) => {
     });
 });
 
+// Endpoint to update a specific product by id
 app.put("/products/:id", (req, res) => {
     const productId = req.params.id;
     const { name, description, price } = req.body;
@@ -58,6 +64,7 @@ app.put("/products/:id", (req, res) => {
     });
 });
 
+// Endpoint to delete a specific product by id
 app.delete("/products/:id", (req, res) => {
     const productId = req.params.id;
     const query = "DELETE FROM products WHERE id = ?";
@@ -73,6 +80,7 @@ app.delete("/products/:id", (req, res) => {
     });
 });
 
+// Start the server
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
 });
